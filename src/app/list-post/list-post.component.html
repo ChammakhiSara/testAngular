@@ -1,0 +1,29 @@
+<div class="container">
+    <a routerLink="/add-post" class="btn btn-success">Add</a>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="hidden">Num</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Catégories</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let post of posts ; let i=index">
+                <td class="hidden">{{ i }}</td>
+                <td>{{ post.titre }}</td>
+                <td>{{ post.descrip }}</td>
+                <td>{{ post.categorie }}</td>
+                <td>{{myDate | date: 'MMM d, y'}}</td> 
+                <td>
+                <a [routerLink]="['/update-post',i]" class="btn btn-success">Modifier</a>
+                <button class="btn btn-danger" (click)="delete(i)">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

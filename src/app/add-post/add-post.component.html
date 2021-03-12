@@ -1,0 +1,37 @@
+<div class="offset-3 col-6 mt-4">
+    <form [formGroup]="myForm" (ngSubmit)="OnSubmit()">
+        <div class="form-group">
+            <label>Titre:</label>
+            <input type="text" formControlName="titre" class="form-control" 
+             [ngClass]="{'is-invalid': submitted && myForm.controls.titre.errors, 'is-valid': submitted &&  !myForm.controls.titre.errors}">
+             <div *ngIf="submitted && myForm.controls.titre.errors" class="invalid-feedback d-block">
+                <div *ngIf="myForm.controls.titre.errors.required">Titre est vide!</div>
+            </div>  
+        </div>
+    
+        <div class="form-group">
+            <label>Description:</label>
+            <textarea formControlName="descrip" class="form-control"  
+            [ngClass]="{'is-invalid': submitted && myForm.controls.descrip.errors, 'is-valid': submitted &&  !myForm.controls.descrip.errors}"></textarea>
+             <div *ngIf="submitted && myForm.controls.descrip.errors" class="invalid-feedback d-block">
+                <div *ngIf="myForm.controls.descrip.errors.required">Description est vide!</div>
+            </div>  
+        </div>
+
+        <div class="form-group">
+            <label>Catégories</label>
+            <select formControlName="categorie" class="form-control">
+                <option value="">Choisir une Catégories</option>
+                <option *ngFor="let categorie of categorieList">{{categorie}}</option>
+            </select>    
+            <div *ngIf="submitted && myForm.controls.categorie.errors?.required" class="invalid-feedback d-block">
+                <sup></sup>Tu dois choisir une Catégories!
+            </div>
+        </div>
+
+        <div>
+            <button class="btn btn-success">Ajouter</button>
+        </div>
+    </form>   
+</div>
+
